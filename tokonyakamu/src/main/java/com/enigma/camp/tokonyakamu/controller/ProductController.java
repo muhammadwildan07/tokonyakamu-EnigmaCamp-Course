@@ -1,8 +1,13 @@
 package com.enigma.camp.tokonyakamu.controller;
 
 import com.enigma.camp.tokonyakamu.entity.Product;
+import com.enigma.camp.tokonyakamu.model.request.ProductRequest;
+import com.enigma.camp.tokonyakamu.model.response.CommonResponse;
+import com.enigma.camp.tokonyakamu.model.response.ProductResponse;
 import com.enigma.camp.tokonyakamu.service.ProductService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -40,7 +45,17 @@ public class ProductController {
         return ProductService.update(product);
     }
 
+    @PostMapping("/all")
+    public ResponseEntity<?> createProductAll(@RequestBody ProductRequest request) {
+        ProductResponse productResponse = ProductService.createProduct(request);
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(CommonResponse.<ProductResponse>builder()
+                        .statusCode(HttpStatus.CREATED.value())
+                        .message("Successfully Create New Project")
+                        .data(productResponse)
+                        .build());
 
+    }
 }
 
 

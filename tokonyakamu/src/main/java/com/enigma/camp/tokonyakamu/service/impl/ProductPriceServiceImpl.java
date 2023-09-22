@@ -4,7 +4,9 @@ import com.enigma.camp.tokonyakamu.entity.ProductPrice;
 import com.enigma.camp.tokonyakamu.repository.ProductPriceRepository;
 import com.enigma.camp.tokonyakamu.service.ProductPriceService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
+@Service
 @RequiredArgsConstructor
 public class ProductPriceServiceImpl implements ProductPriceService {
     private final ProductPriceRepository productPriceRepository;
